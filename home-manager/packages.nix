@@ -62,6 +62,10 @@
     #######
     # DEV #
     #######
+    # Bash
+    nodePackages_latest.bash-language-server
+    shellcheck
+
     # Docker
     docker-compose-language-service
     dockerfile-language-server-nodejs
@@ -85,6 +89,8 @@
     awscli2
     terraform
     terraform-ls
+    helm-ls
+    yaml-language-server
 
     # Typescript 
     nodejs
@@ -108,6 +114,7 @@
     # General
     codeium
     gh-markdown-preview
+    shellcheck
     tree-sitter
     zig
   ];
@@ -117,8 +124,16 @@
     package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config cargo ]);
   };
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+    # config = {
+    #   global = {
+    #     load_dotenv = true;
+    #   };
+    # };
+  };
 
   programs.htop = {
     enable = true;
@@ -129,12 +144,15 @@
   };
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+
     shellAliases = {
       ls = "eza";
       cd = "z";
       lsusb = "cyme";
     };
   };
+
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
