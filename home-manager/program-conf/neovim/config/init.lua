@@ -154,7 +154,19 @@ require 'lspconfig'.ruff_lsp.setup {
 require 'lspconfig'.docker_compose_language_service.setup {
   on_attach = lc.on_attach,
   filetypes = {
-    "yaml"
+    "yaml.docker-compose"
+  },
+}
+require 'lspconfig'.helm_ls.setup {
+  on_attach = lc.on_attach,
+  filetypes = { "helm", "yaml" },
+  single_file_support = true,
+  settings = {
+    ['helm-ls'] = {
+      yamlls = {
+        path = "yaml-language-server",
+      }
+    },
   },
 }
 require 'lspconfig'.dockerls.setup {
@@ -163,6 +175,7 @@ require 'lspconfig'.dockerls.setup {
     "dockerfile"
   }
 }
+require 'lspconfig'.bashls.setup {}
 
 
 -- Rust

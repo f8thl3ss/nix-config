@@ -25,5 +25,11 @@
       volume-down = [ "AudioLowerVolume" ];
       volume-up = [ "AudioRaiseVolume" ];
     };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Ctrl><Alt>t";
+      command = "kitty";
+      name = "Kitty terminal";
+    };
   };
 }

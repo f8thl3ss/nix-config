@@ -14,10 +14,10 @@
     ./audio.nix
     ./backup.nix
     ./boot.nix
-    ./fonts.nix
-    ./gnome.nix
+    ../common/fonts.nix
+    ../common/gnome.nix
     ./networking.nix
-    ./virtualisation.nix
+    ../common/virtualisation.nix
   ];
 
   nixpkgs = {

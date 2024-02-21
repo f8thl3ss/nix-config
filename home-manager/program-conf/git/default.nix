@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, name, ... }:
 
 let
   gitConfig = {
@@ -57,7 +57,6 @@ in
       "*.mill-version" # used by metals
       "*.jvmopts" # should be local to every project
     ];
-    userEmail = "christo1771@gmail.com";
-    userName = "Christopher Guay";
+    userName = "${name}";
   } // (pkgs.sxm.git or { });
 }
