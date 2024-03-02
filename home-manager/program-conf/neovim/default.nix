@@ -4,8 +4,8 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
-    package = pkgs.neovim-nightly;
-    plugins = with pkgs; [ vimPlugins.codeium-vim vimPlugins.packer-nvim ];
+    # package = pkgs.neovim-nightly;
+    plugins = with pkgs; [ vimPlugins.packer-nvim ];
 
     extraConfig = ''
       :luafile ~/.config/nvim/lua/init.lua

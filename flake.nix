@@ -15,7 +15,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware/master";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    mac-app-util.url = "github:hraban/mac-app-util";
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
@@ -32,8 +33,8 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      username = "chris";
       name = "Christopher Guay";
+      username = "chris";
     in
     rec {
       # Your custom packages
@@ -87,6 +88,7 @@
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
+            ./packages.nix
           ];
         };
         "chris@nixos" = home-manager.lib.homeManagerConfiguration {
@@ -96,6 +98,17 @@
           modules = [
             ./home-manager/home.nix
             ./home-manager/job-programs.nix
+          ];
+        };
+        "christopherguay@Christophers-MacBook-Pro.local" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs name; };
+          # > Our main home-manager configuration file <
+          modules = [
+            ./home-manager/darwin-home.nix
+            ./home-manager/default_packages.nix
+            ./home-manager/job-programs.nix
+            inputs.mac-app-util.homeManagerModules.default
           ];
         };
       };

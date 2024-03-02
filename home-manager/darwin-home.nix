@@ -1,9 +1,10 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, username, ... }:
+{ inputs, outputs, lib, pkgs, config, ... }:
 let
-  homeDirectory = "/home/${username}";
+  username = "christopherguay";
+  homeDirectory = "/Users/${username}";
 in
 {
   # You can import other home-manager modules here
@@ -12,7 +13,6 @@ in
   imports = [
     ./program-conf/atuin
     ./program-conf/git
-    # "${./programs/browsers/firefox.nix}"
     ./program-conf/kitty
     ./program-conf/neovim
     ./program-conf/zsh
@@ -49,11 +49,6 @@ in
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;
-    # config = {
-    #   global = {
-    #     load_dotenv = true;
-    #   };
-    # };
   };
 
   programs.htop = {
@@ -79,9 +74,8 @@ in
     enableZshIntegration = true;
   };
 
-
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.05";
 }

@@ -6,10 +6,11 @@ require("bluloco").setup({
   guicursor   = true,
 })
 require("rose-pine").setup({})
-
 vim.opt.termguicolors = true
+
 -- vim.cmd('colorscheme bluloco')
 vim.cmd.colorscheme "catppuccin"
 --[[variant = "moon"]]
 --[[})]]
 -- vim.cmd.colorscheme "rose-pine"
+-- vim.cmd.colorscheme 'melange'

@@ -77,6 +77,7 @@ return require('packer').startup(function()
     'uloco/bluloco.nvim',
     requires = { 'rktjmp/lush.nvim' }
   }
+  use { "savq/melange-nvim" }
 
   -- Format
   use "lukas-reineke/lsp-format.nvim"
@@ -105,6 +106,10 @@ return require('packer').startup(function()
   }
   use {
     "luukvbaal/statuscol.nvim"
+  }
+
+  use {
+    "David-Kunz/gen.nvim",
   }
 
   -- Ai
