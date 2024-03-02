@@ -9,6 +9,7 @@ require("user.trouble-setup")
 require("user.theme")
 require("user.statuscol")
 require('user.null-ls-config')
+require('user.gen')
 
 require("dapui").setup()
 require('Comment').setup()

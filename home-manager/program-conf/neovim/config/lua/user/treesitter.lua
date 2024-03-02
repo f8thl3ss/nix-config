@@ -1,1 +1,1 @@
-require('nvim-treesitter.install')
+require('nvim-treesitter.install').prefer_git = true
