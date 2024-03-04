@@ -15,7 +15,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware/master";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     mac-app-util.url = "github:hraban/mac-app-util";
 
     # Shameless plug: looking for a way to nixify your themes and make
@@ -83,21 +83,14 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         "chris@zephyrus" = home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs username outputs; };
-          modules = [
-            # > Our main home-manager configuration file <
-            ./home-manager/home.nix
-            ./packages.nix
-          ];
-        };
-        "chris@nixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs name username; };
           # > Our main home-manager configuration file <
           modules = [
             ./home-manager/home.nix
-            ./home-manager/job-programs.nix
+            ./home-manager/default-packages.nix
+            ./home-manager/linux-packages.nix
+            ./home-manager/dconf.nix
           ];
         };
         "christopherguay@Christophers-MacBook-Pro.local" = home-manager.lib.homeManagerConfiguration {
@@ -105,8 +98,8 @@
           extraSpecialArgs = { inherit inputs outputs name; };
           # > Our main home-manager configuration file <
           modules = [
-            ./home-manager/darwin-home.nix
-            ./home-manager/default_packages.nix
+            ./home-manager/home.nix
+            ./home-manager/default-packages.nix
             ./home-manager/job-programs.nix
             inputs.mac-app-util.homeManagerModules.default
           ];

@@ -8,7 +8,6 @@ require("user.status-line")
 require("user.trouble-setup")
 require("user.theme")
 require("user.statuscol")
-require('user.null-ls-config')
 require('user.gen')
 
 require("dapui").setup()
@@ -109,9 +108,7 @@ require 'lspconfig'.volar.setup {
   on_attach = lc.on_attach,
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
 }
---[[require 'codeium'.setup({]]
---[[wrapper = "steam-run"]]
---[[})]]
+
 require 'lspconfig'.tailwindcss.setup({
   on_attach = lc.on_attach,
   cmd = { "npx", "tailwindcss-language-server", "--stdio" }
@@ -137,11 +134,8 @@ prettier.setup({
   },
 })
 require 'lspconfig'.eslint.setup {}
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 require 'lspconfig'.cssls.setup {
-  capabilities = capabilities,
+  on_attach = lc.on_attach,
 }
 
 require 'lspconfig'.pyright.setup {
