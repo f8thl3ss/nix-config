@@ -12,7 +12,6 @@ in
   imports = [
     ./program-conf/atuin
     ./program-conf/git
-    # "${./programs/browsers/firefox.nix}"
     ./program-conf/kitty
     ./program-conf/neovim
     ./program-conf/zsh
@@ -24,7 +23,7 @@ in
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      # inputs.neovim-nightly-overlay.overlay
+      inputs.neovim-nightly-overlay.overlay
       # outputs.overlays.unstable-packages
     ];
     # Configure your nixpkgs instance
@@ -49,11 +48,6 @@ in
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;
-    # config = {
-    #   global = {
-    #     load_dotenv = true;
-    #   };
-    # };
   };
 
   programs.htop = {
@@ -79,9 +73,8 @@ in
     enableZshIntegration = true;
   };
 
-
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.05";
 }

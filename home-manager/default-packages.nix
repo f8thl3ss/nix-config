@@ -1,13 +1,8 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./dconf.nix
-  ];
   home.packages = with pkgs; [
-
-    _1password-gui
-    appimage-run
     bat
+    chromium
     clang
     cyme
     diff-so-fancy
@@ -15,53 +10,31 @@
     direnv
     discord
     docker-compose
-    emote
     eza
     fd
-    firefox
     fzf
     fzy
     gh
     gimp
     git-lfs
-    gnome.gnome-boxes
-    google-chrome
-    htop
-    imagemagick
-    inkscape
     jq
     just
     killall
     lazygit
-    libreoffice
     localsend
     luarocks
     ncdu # disk space info (a better du)
     nushell
     ouch # painless compression and decompression for your terminal
-    packer
-    powertop
-    prusa-slicer
     python3
     ripgrep
     s3cmd
     spotify
-    steam
-    steam-run
-    tailscale
-    thunderbird
-    timeshift
     tldr
     tree # display files in a tree view
-    unzip
-    vlc
-    watchmate
-    winetricks
-    wineWowPackages.waylandFull
     wireguard-tools
-    wl-clipboard
-    xsel # clipboard support (also for neovim)
     zellij
+
     #######
     # DEV #
     #######
@@ -73,15 +46,11 @@
     docker-compose-language-service
     dockerfile-language-server-nodejs
 
-    # fly.io
-    flyctl
-
     # Rust
     cargo
     cargo-shuttle
     lldb
     rust-analyzer-unwrapped
-    vscode-extensions.vadimcn.vscode-lldb
 
     # Python
     nodePackages_latest.pyright
@@ -121,4 +90,6 @@
     tree-sitter
     zig
   ];
+
+
 }
