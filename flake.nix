@@ -17,6 +17,7 @@
     hardware.url = "github:nixos/nixos-hardware/master";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     mac-app-util.url = "github:hraban/mac-app-util";
+    flake-utils.url = "github:numtide/flake-utils";
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
@@ -35,6 +36,7 @@
       ];
       name = "Christopher Guay";
       username = "chris";
+      homeDirectoryBase = "/home/";
     in
     rec {
       # Your custom packages
@@ -84,7 +86,7 @@
       homeConfigurations = {
         "chris@zephyrus" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs name username; };
+          extraSpecialArgs = { inherit inputs outputs name username homeDirectoryBase; };
           # > Our main home-manager configuration file <
           modules = [
             ./home-manager/home.nix
@@ -95,7 +97,7 @@
         };
         "christopherguay@Christophers-MacBook-Pro.local" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs name; };
+          extraSpecialArgs = { inherit inputs outputs name; username = "christopherguay"; homeDirectoryBase = "/Users/"; };
           # > Our main home-manager configuration file <
           modules = [
             ./home-manager/home.nix

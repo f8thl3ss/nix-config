@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     bat
-    chromium
+    # chromium
     clang
     cyme
     diff-so-fancy

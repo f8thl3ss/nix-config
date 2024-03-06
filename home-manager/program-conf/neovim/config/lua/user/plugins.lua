@@ -90,18 +90,18 @@ return require("lazy").setup({
   "David-Kunz/gen.nvim",
 
   -- Ai
-  {
-    "jcdickinson/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require 'codeium'.setup({
-        wrapper = "steam-run"
-      })
-    end
-  },
+  -- {
+  --   "jcdickinson/codeium.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require 'codeium'.setup({
+  --       wrapper = "steam-run"
+  --     })
+  --   end
+  -- },
 
   -- Terminal
   {

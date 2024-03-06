@@ -1,10 +1,11 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    kubectl
     doctl
-    kubernetes-helm
     kind
+    kubectl
+    kubernetes-helm
+    kubeseal
     terraform
   ];
 }

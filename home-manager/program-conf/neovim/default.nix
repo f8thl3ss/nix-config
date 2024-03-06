@@ -5,7 +5,7 @@
     viAlias = true;
     vimAlias = true;
     package = pkgs.neovim-nightly;
-    plugins = with pkgs; [ vimPlugins.lazy-nvim ];
+    plugins = with pkgs; [ vimPlugins.lazy-nvim vimPlugins.copilot-lua ];
 
     extraConfig = ''
       :luafile ~/.config/nvim/lua/init.lua
