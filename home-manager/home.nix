@@ -14,6 +14,7 @@ in
     ./program-conf/git
     ./program-conf/kitty
     ./program-conf/neovim
+    ./program-conf/rio
     ./program-conf/zsh
   ];
 

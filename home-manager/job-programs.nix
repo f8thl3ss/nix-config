@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # Secu
+    nmap
+
+    # ops
     doctl
     kind
     kubectl
@@ -8,4 +12,9 @@
     kubeseal
     terraform
   ];
+
+  programs.git = {
+    userEmail = "cguay@dimonoff.com";
+    userName = "Christopher Guay";
+  };
 }
