@@ -16,6 +16,7 @@
     ./boot.nix
     ../common/fonts.nix
     ../common/gnome.nix
+    # ../common/kde.nix
     ./networking.nix
     ../common/virtualisation.nix
   ];
@@ -55,12 +56,6 @@
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   # Services 
   services.printing.enable = true;
   services.tailscale.enable = true;
@@ -79,6 +74,7 @@
     fanctl
     restic
     linuxKernel.packages.linux_zen.cpupower
+    gnome.gnome-tweaks
   ];
 
   users.users = {
@@ -88,6 +84,7 @@
       extraGroups = [
         "adbusers"
         "audio"
+        "dialout"
         "disk"
         "docker"
         "libvirtd"

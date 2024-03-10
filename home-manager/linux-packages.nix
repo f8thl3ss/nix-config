@@ -8,11 +8,11 @@
     _1password-gui
     appimage-run
     emote
+    firefox
     gnome.gnome-boxes
     google-chrome
     imagemagick
     inkscape
-    libreoffice
     powertop
     prusa-slicer
     steam
@@ -27,6 +27,9 @@
     wireguard-tools
     wl-clipboard
     xsel # clipboard support (also for neovim)
+
+    # Windows
+    guacamole-client
 
     # fly.io
     flyctl

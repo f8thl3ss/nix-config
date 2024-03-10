@@ -9,6 +9,7 @@ require("user.trouble-setup")
 require("user.theme")
 require("user.statuscol")
 require('user.gen')
+require('user.copilot')
 
 require("dapui").setup()
 require('Comment').setup()

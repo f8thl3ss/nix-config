@@ -90,6 +90,16 @@ return require("lazy").setup({
   "David-Kunz/gen.nvim",
 
   -- Ai
+  
+
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
   -- {
   --   "jcdickinson/codeium.nvim",
   --   dependencies = {
