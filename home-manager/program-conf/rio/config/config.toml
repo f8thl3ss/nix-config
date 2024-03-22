@@ -33,7 +33,7 @@ blinking-cursor = false
 # (windows: C:\Users\USER\AppData\Local\rio\themes\dracula.toml)
 #
 # Example:
-theme = "catppuccin-frappe"
+theme = "catppuccin-macchiato"
 
 # Padding-x
 #
@@ -48,7 +48,7 @@ theme = "catppuccin-frappe"
 # Possible choices: 'both', 'left' and 'right'.
 #
 # Example:
-# option-as-alt = 'left'
+option-as-alt = 'both'
 
 # Startup directory
 #
@@ -139,9 +139,9 @@ mode = "Maximized"
 #
 # Example:
 # [keyboard]
-# use-kitty-keyboard-protocol = false
-# disable-ctlseqs-alt = false
-
+# use-kitty-keyboard-protocol = true
+# disable-ctlseqs-alt = true
+#
 # Fonts
 #
 # Configure fonts used by the terminal
@@ -160,7 +160,7 @@ mode = "Maximized"
 #
 # Example:
 # [fonts]
-size = 16
+size = 14
 #
 # [fonts.regular]
 # family = "cascadiamono"
