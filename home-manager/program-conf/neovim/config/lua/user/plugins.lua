@@ -10,7 +10,6 @@ return require("lazy").setup({
 
   -- Tree sitter
   'nvim-treesitter/nvim-treesitter',
-
   'mrcjkb/rustaceanvim',
 
   -- Completion
@@ -68,6 +67,7 @@ return require("lazy").setup({
   'MunifTanjim/prettier.nvim',
 
   -- Debug
+  { "nvim-neotest/nvim-nio" },
   'mfussenegger/nvim-dap',
   "nvim-neotest/nvim-nio",
   { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
@@ -91,7 +91,6 @@ return require("lazy").setup({
   "David-Kunz/gen.nvim",
 
   -- Ai
-
   "zbirenbaum/copilot.lua",
   {
     "CopilotC-Nvim/CopilotChat.nvim",

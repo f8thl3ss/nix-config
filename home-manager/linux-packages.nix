@@ -28,9 +28,6 @@
     wl-clipboard
     xsel # clipboard support (also for neovim)
 
-    # Windows
-    guacamole-client
-
     # fly.io
     flyctl
 
