@@ -24,20 +24,31 @@ require('copilot').setup({
       accept_line = false,
       next = "<M-]>",
       prev = "<M-[>",
-      dismiss = "<C-]>",
+      dismiss = "<M-d>",
     },
   },
   filetypes = {
     yaml = true,
     markdown = false,
-    help = false,
-    gitcommit = false,
-    gitrebase = false,
+    help = true,
+    gitcommit = true,
+    gitrebase = true,
     hgcommit = false,
     svn = false,
     cvs = false,
-    ["."] = false,
+    rust = true,
+    terraform = true,
+    bash = true,
+    ["."] = true,
   },
   copilot_node_command = 'node', -- Node.js version must be > 18.x
-  server_opts_overrides = {},
+  server_opts_overrides = {
+    trace = "verbose",
+    settings = {
+      advanced = {
+        listCount = 10,         -- #completions for panel
+        inlineSuggestCount = 3, -- #completions for getCompletions
+      }
+    }
+  }
 })

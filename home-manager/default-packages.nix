@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     bat
-    # chromium
     clang
     cyme
     diff-so-fancy
@@ -58,11 +57,12 @@
     ruff-lsp
 
     # Ops
-    awscli2
+    # awscli2
     terraform
     terraform-ls
     helm-ls
     yaml-language-server
+    hadolint
 
     # Typescript 
     nodejs
