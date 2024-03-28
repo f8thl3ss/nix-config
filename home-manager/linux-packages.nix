@@ -13,6 +13,8 @@
     google-chrome
     imagemagick
     inkscape
+    lm_sensors
+    nextcloud-client
     powertop
     prusa-slicer
     steam
