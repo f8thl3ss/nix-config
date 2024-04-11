@@ -3,25 +3,6 @@
 
 { inputs, outputs, lib, config, pkgs, username, ... }:
 {
-  # You can import other NixOS modules here
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-
-    # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
-
-    ./asus-hardware-config.nix
-    ./audio.nix
-    ./backup.nix
-    ./boot.nix
-    ../common/fonts.nix
-    ../common/gnome.nix
-    # ../common/kde.nix
-    ./networking.nix
-    ../common/virtualisation.nix
-  ];
-
-
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
@@ -31,6 +12,17 @@
       allowUnfree = true;
     };
   };
+
+  imports = [
+    ./audio.nix
+    ./backup.nix
+    ./boot.nix
+    ./fonts.nix
+    ./gnome.nix
+    ./libvirt.nix
+    ./networking.nix
+    ./virtualisation.nix
+  ];
 
   nix = {
     # This will add each flake input as a registry
@@ -65,7 +57,7 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   # Services 
-  services.printing.enable = true;
+  # services.printing.enable = true;
   services.tailscale.enable = true;
   services.fwupd = {
     enable = true;
@@ -79,9 +71,7 @@
     gcc
     cmake
     gnumake
-    fanctl
     restic
-    linuxKernel.packages.linux_zen.cpupower
     gnome.gnome-tweaks
   ];
 
@@ -111,5 +101,5 @@
   networking.networkmanager.wifi.powersave = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

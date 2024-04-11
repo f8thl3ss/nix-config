@@ -49,7 +49,7 @@
     cargo
     cargo-shuttle
     lldb
-    rust-analyzer-unwrapped
+    rust-analyzer
 
     # Python
     nodePackages_latest.pyright

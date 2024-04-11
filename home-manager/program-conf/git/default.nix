@@ -1,4 +1,4 @@
-{ pkgs, name, ... }:
+{ pkgs, name, email, ... }:
 
 let
   gitConfig = {
@@ -58,5 +58,6 @@ in
       "*.jvmopts" # should be local to every project
     ];
     userName = "${name}";
+    userEmail = "${email}";
   } // (pkgs.sxm.git or { });
 }

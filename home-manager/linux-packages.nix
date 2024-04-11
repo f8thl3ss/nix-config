@@ -7,6 +7,8 @@
 
     _1password-gui
     appimage-run
+    bottom
+    distrobox
     emote
     firefox
     gnome.gnome-boxes
@@ -22,6 +24,7 @@
     tailscale
     thunderbird
     timeshift
+    toolbox
     vlc
     watchmate
     winetricks
