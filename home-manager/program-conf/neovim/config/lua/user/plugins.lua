@@ -118,6 +118,15 @@ return require("lazy").setup({
   --   end
   -- },
 
+  -- Rust
+  {
+    'saecki/crates.nvim',
+    tag = 'stable',
+    config = function()
+      require('crates').setup()
+    end,
+  },
+
   -- Terminal
   {
     "akinsho/toggleterm.nvim",

@@ -199,7 +199,7 @@ vim.g.rustaceanvim = function()
     },
     server = {
       on_attach = function(client, bufnr)
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.lsp.inlay_hint.enable(true)
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = augroup,

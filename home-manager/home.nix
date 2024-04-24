@@ -62,6 +62,7 @@ in
       ls = "eza";
       cd = "z";
       lsusb = "cyme";
+      du = "ncdu";
     };
   };
 

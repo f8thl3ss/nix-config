@@ -29,7 +29,7 @@
     };
     nas-backup = {
       extraOptions = [
-        "sftp.command='ssh magic-pi -i /home/chris/.ssh/id_rsa -o StrictHostKeyChecking=no -s sftp'"
+        "sftp.command='ssh magic-pi -i /home/chris/.ssh/id_ed25519.pub -o StrictHostKeyChecking=no -s sftp'"
       ];
       passwordFile = "/etc/nixos/secrets/restic-password";
 

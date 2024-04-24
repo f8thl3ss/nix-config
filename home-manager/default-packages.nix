@@ -4,6 +4,7 @@
     bat
     clang
     cyme
+    devenv
     diff-so-fancy
     dig
     direnv
@@ -13,6 +14,7 @@
     fd
     fzf
     fzy
+    glow
     gh
     gimp
     git-lfs

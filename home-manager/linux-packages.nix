@@ -8,6 +8,7 @@
     _1password-gui
     appimage-run
     bottom
+    cinny-desktop
     distrobox
     emote
     firefox
@@ -38,5 +39,8 @@
 
     # Rust
     vscode-extensions.vadimcn.vscode-lldb
+
+    # Code
+    vscode.fhs
   ];
 }
