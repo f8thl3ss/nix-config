@@ -160,7 +160,7 @@ mode = "Maximized"
 #
 # Example:
 [fonts]
-size = 23
+size = 18
 
 #
 # [fonts.regular]

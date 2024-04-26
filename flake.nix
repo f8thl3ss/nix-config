@@ -17,6 +17,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     mac-app-util.url = "github:hraban/mac-app-util";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
     # Shameless plug: looking for a way to nixify your themes and make
@@ -24,7 +26,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, mac-app-util, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -83,6 +85,37 @@
           ];
         };
       };
+      darwinConfigurations = {
+        Christophers-MacBook-Pro = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs outputs name; username = "christopherguay"; };
+          system = "aarch64-darwin";
+
+          modules = [
+            ./nix-darwin/configuration.nix
+            mac-app-util.darwinModules.default
+            home-manager.darwinModules.home-manager
+            (
+              { config, inputs, ... }:
+              {
+                home-manager.users."christopherguay".imports = [
+                  ./home-manager/home.nix
+                  ./home-manager/default-packages.nix
+                  ./home-manager/job-programs.nix
+                  inputs.mac-app-util.homeManagerModules.default
+                ];
+                home-manager.extraSpecialArgs = {
+                  inherit inputs outputs;
+                  username = "christopherguay";
+                  email = "cguay@dimonoff.com";
+                  system = "aarch64-darwin";
+                  homeDirectoryBase = "/Users";
+                };
+              }
+            )
+
+          ];
+        };
+      };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
@@ -96,17 +129,6 @@
             ./home-manager/default-packages.nix
             ./home-manager/linux-packages.nix
             ./home-manager/dconf.nix
-          ];
-        };
-        "christopherguay@Christophers-MacBook-Pro.local" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs name; username = "christopherguay"; homeDirectoryBase = "/Users/"; };
-          # > Our main home-manager configuration file <
-          modules = [
-            ./home-manager/home.nix
-            ./home-manager/default-packages.nix
-            ./home-manager/job-programs.nix
-            inputs.mac-app-util.homeManagerModules.default
           ];
         };
       };
