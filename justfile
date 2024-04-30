@@ -15,10 +15,6 @@ nix-darwin:
   else 
     darwin-rebuild switch --flake .
   fi;
-  
 
 home-linux-laptop:
   home-manager switch --flake .#chris -b backup "$@"
-
-home-mac-job-laptop:
-  home-manager switch --flake .#christopherguay@Christophers-MacBook-Pro.local -b backup

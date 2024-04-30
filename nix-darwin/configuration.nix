@@ -15,7 +15,7 @@
       trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "macos-builder.cachix.org-1:HPWcq59/iyqQz6HEtlO/kjD/a7ril0+/XJc+SZ2LgpI=" ];
       substituters = [ "https://cache.nixos.org" "https://macos-builder.cachix.org" ];
       builders-use-substitutes = true;
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = [ "nix-command" "flakes" ];
       # upgrade-nix-store-path-url = "https://install.determinate.systems/nix-upgrade/stable/universal";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       extra-trusted-users = [ "@admin" ];
