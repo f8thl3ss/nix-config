@@ -10,6 +10,7 @@
 
     # Databases
     usql
+    pgcli
 
     # ops
     doctl
@@ -18,6 +19,7 @@
     kubectl
     kubernetes-helm
     kubeseal
+    lima
     mysql
     terraform
   ];

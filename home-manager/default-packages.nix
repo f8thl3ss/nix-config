@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     bat
+    bottom
     clang
     cyme
     devenv
@@ -18,6 +19,7 @@
     gh
     gimp
     git-lfs
+    jujutsu
     jq
     just
     killall
@@ -83,15 +85,11 @@
     nil
     nixpkgs-fmt
     manix
-    nix-index
 
     # General
-    codeium
     gh-markdown-preview
     shellcheck
     tree-sitter
     zig
   ];
-
-
 }
