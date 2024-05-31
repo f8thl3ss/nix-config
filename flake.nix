@@ -9,17 +9,35 @@
     # at the same time. Here's an working example:
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    swww.url = "github:LGFae/swww";
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # Hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
+    #
+    #   # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
@@ -39,14 +57,16 @@
       name = "Christopher Guay";
       username = "chris";
       email = "christo1771@gmail.com";
-      homeDirectoryBase = "/home/";
+      lib = nixpkgs.lib;
     in
     rec {
       # Your custom packages
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
+        let
+          pkgs = nixpkgs.legacyPackages."${system}";
+        in
+        import ./pkgs { inherit pkgs; }
       );
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
@@ -62,7 +82,6 @@
       nixosModules = import ./modules/nixos;
       # Reusable home-manager modules you might want to export
       # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home-manager;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#zephyrus'
@@ -75,13 +94,24 @@
             inputs.nixos-hardware.nixosModules.asus-zephyrus-ga401
           ];
         };
-        framework-laptop = nixpkgs.lib.nixosSystem {
+        framework-laptop = lib.nixosSystem {
           specialArgs = { inherit inputs username outputs email; };
           modules = [
-            # > Our main nixos configuration file <
-            ./nixos/common/default.nix
             ./nixos/framework-13.nix
             inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+            inputs.home-manager.nixosModules.home-manager
+            ({ username, homeDirectoryBase, ... }:
+              let
+                homeDirectoryBase = "/home";
+                system = "x96_64-linux";
+              in
+              {
+                home-manager.extraSpecialArgs = {
+                  inherit homeDirectoryBase username email inputs outputs system;
+                };
+                home-manager.users."chris" = import ./home-manager/home.nix;
+              })
+
           ];
         };
       };
@@ -119,18 +149,21 @@
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        "chris" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs name username homeDirectoryBase email; };
-          # > Our main home-manager configuration file <
-          modules = [
-            ./home-manager/home.nix
-            ./home-manager/default-packages.nix
-            ./home-manager/linux-packages.nix
-            ./home-manager/dconf.nix
-          ];
-        };
-      };
+      # homeConfigurations = {
+      #   "chris" = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      #     extraSpecialArgs = {
+      #       inherit inputs outputs name username homeDirectoryBase email;
+      #       system = "x86_64-linux";
+      #     };
+      #     # > Our main home-manager configuration file <
+      #     modules = [
+      #       ./home-manager/home.nix
+      #       ./home-manager/default-packages.nix
+      #       ./home-manager/linux-packages.nix
+      #       ./home-manager/dconf.nix
+      #     ];
+      #   };
+      # };
     };
 }

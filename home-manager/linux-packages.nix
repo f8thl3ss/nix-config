@@ -8,9 +8,9 @@
     _1password-gui
     appimage-run
     bottom
-    cinny-desktop
     distrobox
     emote
+    file
     firefox
     gnome.gnome-boxes
     google-chrome
@@ -33,6 +33,8 @@
     wireguard-tools
     wl-clipboard
     xsel # clipboard support (also for neovim)
+
+    lima
 
     # fly.io
     flyctl

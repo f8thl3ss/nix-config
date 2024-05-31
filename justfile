@@ -17,4 +17,4 @@ nix-darwin:
   fi;
 
 home-linux-laptop:
-  home-manager switch --flake .#chris -b backup "$@"
+  home-manager switch --flake .#chris -b backup "$@" --show-trace

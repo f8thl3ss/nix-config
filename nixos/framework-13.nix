@@ -1,12 +1,9 @@
-{ inputs, ... }:
+{ ... }:
 {
   # You can import other NixOS modules here
   imports = [
-    inputs.home-manager.nixosModules.home-manager
-
     # Common
     ./common/default.nix
-
     # Hardware specific
     ./framework-laptop/default.nix
   ];

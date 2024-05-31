@@ -1,21 +1,24 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, username, homeDirectoryBase, ... }:
+{ outputs, username, homeDirectoryBase, ... }:
 let
   homeDirectory = "${homeDirectoryBase}/${username}";
 in
 {
   # You can import other home-manager modules here
   programs.home-manager.enable = true;
-  # Imports other configs
   imports = [
     ./program-conf/atuin
     ./program-conf/git
     ./program-conf/kitty
+    ./program-conf/hyprland
+    ./program-conf/waybar
     ./program-conf/neovim
     ./program-conf/rio
     ./program-conf/zsh
+    ./default-packages.nix
+    ./linux-packages.nix
   ];
 
   nixpkgs = {
@@ -24,7 +27,7 @@ in
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      inputs.neovim-nightly-overlay.overlay
+      # inputs.neovim-nightly-overlay.overlays
       # outputs.overlays.unstable-packages
     ];
     # Configure your nixpkgs instance
@@ -39,10 +42,6 @@ in
 
   home = {
     inherit username homeDirectory;
-
-    sessionVariables = {
-      NIXPKGS_ALLOW_UNFREE = "1";
-    };
   };
 
   programs.direnv = {

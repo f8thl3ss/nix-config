@@ -4,7 +4,6 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
-    package = pkgs.neovim-nightly;
     plugins = with pkgs; [ vimPlugins.lazy-nvim vimPlugins.copilot-lua ];
 
     extraConfig = ''

@@ -11,20 +11,21 @@
     direnv
     discord
     docker-compose
-    eza
-    fd
+    eza # ls replacement
+    fd # find replacement
     fzf
-    fzy
-    glow
-    gh
-    gimp
-    git-lfs
-    jujutsu
+    fzy # fuzzy finder
+    gh # github cli
+    gimp # image editor
+    git-lfs # handle large files in git
+    glow # markdown renderer
+    gtrash # trash cli
     jq
+    jujutsu
     just
     killall
-    lazygit
-    localsend
+    lazygit # git tui
+    localsend # send stuff on local network
     luarocks
     ncdu # disk space info (a better du)
     nushell

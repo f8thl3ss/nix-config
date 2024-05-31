@@ -18,7 +18,8 @@
     ./backup.nix
     ./boot.nix
     ./fonts.nix
-    ./gnome.nix
+    # ./gnome.nix
+    ./hyprland.nix
     ./libvirt.nix
     ./networking.nix
     ./virtualisation.nix
@@ -45,7 +46,6 @@
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
-
     };
     gc = {
       automatic = true;
@@ -66,15 +66,19 @@
   };
 
   # default editor
-  environment.variables.EDITOR = "nvim";
-  environment.variables.MOZ_ENABLE_WAYLAND = "1";
+  environment.variables = {
+    EDITOR = "nvim";
+    MOZ_ENABLE_WAYLAND = "1";
+    HYPRCURSOR_SIZE = "20";
+    HYPRCURSOR_THEME = "Bibata-Modern-Classic";
+  };
 
   environment.systemPackages = with pkgs; [
     gcc
     cmake
     gnumake
     restic
-    gnome.gnome-tweaks
+    rtl-sdr
   ];
 
   users.users = {
