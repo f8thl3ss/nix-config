@@ -1,7 +1,7 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ outputs, username, homeDirectoryBase, ... }:
+{ outputs, username, homeDirectoryBase, pkgs, inputs, ... }:
 let
   homeDirectory = "${homeDirectoryBase}/${username}";
 in
@@ -9,16 +9,19 @@ in
   # You can import other home-manager modules here
   programs.home-manager.enable = true;
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
     ./program-conf/atuin
     ./program-conf/git
     ./program-conf/kitty
-    ./program-conf/hyprland
-    ./program-conf/waybar
+    ./program-conf/vscode
+    # ./program-conf/hyprland
+    # ./program-conf/waybar
     ./program-conf/neovim
     ./program-conf/rio
     ./program-conf/zsh
     ./default-packages.nix
     ./linux-packages.nix
+    ./dconf.nix
   ];
 
   nixpkgs = {
@@ -37,17 +40,15 @@ in
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
       allowUnsupportedSystem = true;
+      permittedInsecurePackages = [
+        "fluffychat-linux-1.22.1"
+        "olm-3.2.16"
+      ];
     };
   };
 
   home = {
     inherit username homeDirectory;
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableZshIntegration = true;
   };
 
   programs.htop = {
@@ -64,6 +65,12 @@ in
       du = "ncdu";
     };
   };
+
+  # programs.mise = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  #   package = pkgs.miseLatest;
+  # };
 
   programs.zoxide = {
     enable = true;

@@ -17,7 +17,7 @@ let
       cmd = "nvim -f -c \"MergetoolStart\" \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"";
       prompt = false;
     };
-    pull.rebase = false;
+    pull.rebase = true;
     push.autoSetupRemote = true;
   };
 
@@ -59,5 +59,6 @@ in
     ];
     userName = lib.mkDefault "${name}";
     userEmail = lib.mkDefault "${email}";
+
   } // (pkgs.sxm.git or { });
 }

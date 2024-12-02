@@ -1,16 +1,21 @@
 require("user.dap-keys")
 require("user.plugins")
 require("user.dap-configuration")
-require("user.treesitter")
 require("user.navigate")
 require("user.opts")
 require("user.status-line")
-require("user.trouble-setup")
 require("user.theme")
 require("user.statuscol")
 require('user.gen')
-require('user.copilot')
+-- require('avante.nvim')
+-- require('avante')
+-- require('user.copilot')
 
+
+require('render-markdown').setup({
+  file_types = { "markdown", "Avante" }
+})
+require("trouble").setup()
 require("dapui").setup()
 require('Comment').setup()
 require('colorizer').setup()
@@ -50,6 +55,8 @@ require("toggleterm").setup {
 -- Lsp diagnostic mapping
 vim.g.inlay_hints_visible = true
 local lc = require("user.lsp-config")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- LANGUAGE SERVERS --
 
@@ -63,6 +70,7 @@ require('lspconfig').nil_ls.setup {
   },
   on_attach = lc.on_attach
 }
+require 'lspconfig'.nixd.setup {}
 
 require("typescript-tools").setup {
   on_attach = lc.on_attach
@@ -105,9 +113,26 @@ require 'lspconfig'.terraformls.setup {
     filetype = { "terraform", "terraform-vars", "tf" }
   }
 }
-require 'lspconfig'.volar.setup {
-  on_attach = lc.on_attach,
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
+-- require 'lspconfig'.volar.setup {
+--   on_attach = lc.on_attach,
+--   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+-- }
+require 'lspconfig'.volar.setup {}
+require 'lspconfig'.ts_ls.setup {
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/nix/store/8qmcn7iv9zhphns4bavp8nzqk3mrf0ha-vue-language-server-2.1.6/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+        languages = { "javascript", "typescript", "vue" },
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+  },
 }
 
 require 'lspconfig'.tailwindcss.setup({
@@ -134,6 +159,32 @@ prettier.setup({
     "yaml",
   },
 })
+require 'lspconfig'.jsonls.setup {
+  capabilities = capabilities,
+}
+require('lspconfig').yamlls.setup {
+  settings = {
+    redhat = {
+      telemetry = {
+        enabled = false
+      }
+    },
+    yaml = {
+      format = {
+        enable = true,
+      },
+      validate = true,
+      json = {
+        schemaDownload = {
+          enable = true,
+        }
+      },
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+      },
+    },
+  }
+}
 require 'lspconfig'.eslint.setup {}
 require 'lspconfig'.cssls.setup {
   on_attach = lc.on_attach,
@@ -142,7 +193,7 @@ require 'lspconfig'.cssls.setup {
 require 'lspconfig'.pyright.setup {
   on_attach = lc.on_attach,
 }
-require 'lspconfig'.ruff_lsp.setup {
+require 'lspconfig'.ruff.setup {
   on_attach = lc.on_attach,
 }
 
@@ -172,7 +223,7 @@ require 'lspconfig'.dockerls.setup {
   }
 }
 require 'lspconfig'.bashls.setup {}
-
+require 'lspconfig'.harper_ls.setup {}
 
 -- Rust
 vim.g.rustaceanvim = function()

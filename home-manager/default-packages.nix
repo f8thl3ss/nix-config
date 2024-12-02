@@ -1,10 +1,10 @@
-{ pkgs, ... }:
-{
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [
     bat
     bottom
     clang
     cyme
+    fluffychat
     devenv
     diff-so-fancy
     dig
@@ -13,6 +13,7 @@
     docker-compose
     eza # ls replacement
     fd # find replacement
+    floorp
     fzf
     fzy # fuzzy finder
     gh # github cli
@@ -20,12 +21,13 @@
     git-lfs # handle large files in git
     glow # markdown renderer
     gtrash # trash cli
+    harper
     jq
     jujutsu
     just
     killall
     lazygit # git tui
-    localsend # send stuff on local network
+    (lib.hiPrio localsend) # send stuff on local network
     luarocks
     ncdu # disk space info (a better du)
     nushell
@@ -38,12 +40,13 @@
     tree # display files in a tree view
     wireguard-tools
     zellij
+    # zen-browser
 
     #######
     # DEV #
     #######
     # Bash
-    nodePackages_latest.bash-language-server
+    bash-language-server
     shellcheck
 
     # Docker
@@ -57,7 +60,7 @@
     rust-analyzer
 
     # Python
-    nodePackages_latest.pyright
+    pyright
     ruff
     ruff-lsp
 
@@ -75,8 +78,11 @@
     nodePackages_latest.prettier
     nodePackages_latest.typescript
     nodePackages_latest.typescript-language-server
-    nodePackages_latest.volar
+    vscode-extensions.vue.volar
     nodePackages_latest.vscode-langservers-extracted
+
+    # Vuejs
+    vue-language-server
 
     # Lua
     lua-language-server
@@ -84,6 +90,7 @@
 
     # Nix
     nil
+    nixd
     nixpkgs-fmt
     manix
 

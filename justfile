@@ -5,7 +5,7 @@ nixos-zephyrus:
   sudo nixos-rebuild switch --flake .#zephyrus $@
 
 nixos-framework:
-  sudo nixos-rebuild switch --flake .#framework-laptop -v
+  sudo nixos-rebuild switch --flake .#framework-laptop --show-trace
 
 nix-darwin:
   #!/usr/bin/env bash

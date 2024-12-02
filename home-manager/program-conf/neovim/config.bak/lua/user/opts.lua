@@ -43,7 +43,6 @@ cmp.setup({
     { name = 'buffer',                 keyword_length = 2 }, -- source current buffer
     { name = 'vsnip',                  keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
     { name = 'calc' },                                       -- source for math calculation
-    { name = 'codeium' },
   },
   window = {
     completion = cmp.config.window.bordered(),
@@ -143,23 +142,4 @@ vim.keymap.set('n', '<C-j>', '<CMD>lua require(\'telescope.builtin\').find_files
 vim.keymap.set('n', '<C-l>', '<CMD>lua require(\'telescope.builtin\').live_grep()<CR>')
 vim.keymap.set('n', '<leader>fb', '<CMD>lua require(\'telescope.builtin\').buffers()<CR>')
 vim.keymap.set('n', '<leader>fbh', '<CMD>lua require(\'telescope.builtin\').help_tags()<CR>')
-
--- Trouble
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-  { silent = true, noremap = true }
-)
-vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  { silent = true, noremap = true }
-)
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  { silent = true, noremap = true }
-)
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-  { silent = true, noremap = true }
-)
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-  { silent = true, noremap = true }
-)
-vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-  { silent = true, noremap = true }
-)
+vim.keymap.set('n', "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")

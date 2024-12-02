@@ -7,11 +7,6 @@
     enable = true;
     xwayland.enable = true;
   };
-  hardware = {
-    opengl.enable = true;
-    bluetooth.enable = true; # enables support for Bluetooth
-    bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on bootrue;
-  };
   environment.sessionVariables = {
     NIXOS_OZONE_WAYLAND = "1";
   };

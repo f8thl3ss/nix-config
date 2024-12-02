@@ -1,0 +1,47 @@
+[?1049h[?1h[H[2J[?2004h[?2026$p[?u[c[?12h[?25h[?25l(B[m[H[2J[23BExecuting:     vnoremenu PopUp.Cut                     "+x[K[H[23M
+Executing:     vnoremenu PopUp.Copy                    "+y                      
+Executing:     anoremenu PopUp.Paste                   "+gP                     
+Executing:     vnoremenu PopUp.Paste                   "+P                      
+Executing:     vnoremenu PopUp.Delete                  "_x                      
+Executing:     nnoremenu PopUp.Select\ All             ggVG                     
+Executing:     vnoremenu PopUp.Select\ All             gg0oG$                   
+Executing:     inoremenu PopUp.Select\ All             <C-Home><C-O>VG          
+Executing:     anoremenu PopUp.Inspect                 <Cmd>Inspect<CR>         
+Executing:     anoremenu PopUp.-1-                     <Nop>                    
+Executing:     anoremenu PopUp.How-to\ disable\ mouse  <Cmd>help disable-mouse<C
+R>                                                                              
+Executing:                                                                      
+Executing: lua vim.g.loaded_node_provider=0;vim.g.loaded_perl_provider=0;vim.g.l
+oaded_python_provider=0;vim.g.python3_host_prog='/nix/store/x8kipdhq6ckal9rnppk7
+54pgalh8l7ni-neovim-0.10.2/bin/nvim-python3';vim.g.ruby_host_prog='/nix/store/x8
+kipdhq6ckal9rnppk754pgalh8l7ni-neovim-0.10.2/bin/nvim-ruby'                     
+Executing: set packpath^=/nix/store/6z8jn1j877r5l6rfgl4g9jvx1ld2k2zy-vim-pack-di
+r                                                                               
+Executing: set rtp^=/nix/store/6z8jn1j877r5l6rfgl4g9jvx1ld2k2zy-vim-pack-dir    
+Searching for "ftplugin.vim" in runtime path                                    
+Searching for "/nix/store/6z8jn1j877r5l6rfgl4g9jvx1ld2k2zy-vim-pack-dir/ftplugin
+.vim"                                                                           
+-- More --                                                                      ]112[1 q[HExecuting:     vnoremenu PopUp.Cut                     "+x[K
+Executing:     vnoremenu PopUp.Copy                    "+y[K
+Executing:     anoremenu PopUp.Paste                   "+gP[K
+Executing:     vnoremenu PopUp.Paste                   "+P[K
+Executing:     vnoremenu PopUp.Delete                  "_x[K
+Executing:     nnoremenu PopUp.Select\ All             ggVG[K
+Executing:     vnoremenu PopUp.Select\ All             gg0oG$[K
+Executing:     inoremenu PopUp.Select\ All             <C-Home><C-O>VG[K
+Executing:     anoremenu PopUp.Inspect                 <Cmd>Inspect<CR>[K
+Executing:     anoremenu PopUp.-1-                     <Nop>[K
+Executing:     anoremenu PopUp.How-to\ disable\ mouse  <Cmd>help disable-mouse<C
+R>[K
+Executing:[K
+Executing: lua vim.g.loaded_node_provider=0;vim.g.loaded_perl_provider=0;vim.g.l
+oaded_python_provider=0;vim.g.python3_host_prog='/nix/store/x8kipdhq6ckal9rnppk7
+54pgalh8l7ni-neovim-0.10.2/bin/nvim-python3';vim.g.ruby_host_prog='/nix/store/x8
+kipdhq6ckal9rnppk754pgalh8l7ni-neovim-0.10.2/bin/nvim-ruby'[K
+Executing: set packpath^=/nix/store/6z8jn1j877r5l6rfgl4g9jvx1ld2k2zy-vim-pack-di
+r[K
+Executing: set rtp^=/nix/store/6z8jn1j877r5l6rfgl4g9jvx1ld2k2zy-vim-pack-dir[K
+Searching for "ftplugin.vim" in runtime path[K
+Searching for "/nix/store/6z8jn1j877r5l6rfgl4g9jvx1ld2k2zy-vim-pack-dir/ftplugin
+.vim"[K
+-- More --[K[?12h[?25h[?25l[?1004h[?12h[?25h[?25l[CSPACE/d/j: screen/page/line down, b/u/k: up, q: quit[C[?12h[?25h

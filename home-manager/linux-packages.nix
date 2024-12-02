@@ -1,21 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
-  imports = [
-    ./dconf.nix
-  ];
+  # imports = [
+  #   ./dconf.nix
+  # ];
   home.packages = with pkgs; [
+    # miseLatest
 
-    _1password-gui
+    # _1password
+    # _1password-gui
     appimage-run
     bottom
     distrobox
     emote
     file
     firefox
-    gnome.gnome-boxes
     google-chrome
     imagemagick
     inkscape
+    libreoffice
     lm_sensors
     nextcloud-client
     powertop
@@ -23,26 +25,33 @@
     steam
     steam-run
     tailscale
+    transmission_4
     thunderbird
     timeshift
     toolbox
     vlc
-    watchmate
+    # watchmate
     winetricks
     wineWowPackages.waylandFull
     wireguard-tools
     wl-clipboard
     xsel # clipboard support (also for neovim)
+    inputs.zen-browser.packages."${system}".specific
 
     lima
 
     # fly.io
     flyctl
 
+    # Editors
+    zed-editor
+
     # Rust
     vscode-extensions.vadimcn.vscode-lldb
 
+    # Secu
+    rustscan
     # Code
-    vscode.fhs
+    # vscode.fhs
   ];
 }

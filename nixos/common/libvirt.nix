@@ -13,11 +13,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    qemu_full
     spice
     spice-gtk
     spice-protocol
-    virt-viewer
     virtio-win
+    virt-viewer
     win-spice
   ];
   programs.virt-manager.enable = true;

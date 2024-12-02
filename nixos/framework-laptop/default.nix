@@ -4,28 +4,25 @@
 { config, lib, modulesPath, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
   # boot.extraModulePackages = with config.boot.kernelPackages; [ framework-laptop-kmod ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/a0d47549-7762-45c5-aa3b-348f205af865";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/a0d47549-7762-45c5-aa3b-348f205af865";
+    fsType = "ext4";
+  };
 
-  boot.initrd.luks.devices."luks-b8e0dd5c-b496-4dd0-974d-fe474bb5f600".device = "/dev/disk/by-uuid/b8e0dd5c-b496-4dd0-974d-fe474bb5f600";
+  boot.initrd.luks.devices."luks-b8e0dd5c-b496-4dd0-974d-fe474bb5f600".device =
+    "/dev/disk/by-uuid/b8e0dd5c-b496-4dd0-974d-fe474bb5f600";
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/E11C-5976";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/E11C-5976";
+    fsType = "vfat";
+  };
 
   swapDevices = [{
     device = "/swapfile";
@@ -40,5 +37,20 @@
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware = {
+    graphics.enable = true;
+    amdgpu.amdvlk.enable = true;
+    amdgpu.opencl.enable = true;
+    bluetooth.enable = true; # enables support for Bluetooth
+    bluetooth.powerOnBoot =
+      true; # powers up the default Bluetooth controller on bootrue;
+  };
+
+  services.jellyfin = {
+    enable = false;
+    openFirewall = true;
+  };
 }

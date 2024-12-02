@@ -7,7 +7,25 @@
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
-  modifications = final: prev: { };
+  modifications = final: prev: {
+    # fprintd = prev.fprintd.overrideAttrs (oldAttrs: rec {
+    #   version = "1.94.3";
+    #   src = final.fetchFromGitLab {
+    #     domain = "gitlab.freedesktop.org";
+    #     owner = "libfprint";
+    #     repo = "fprintd";
+    #     rev = "v${version}";
+    #     sha256 = "sha256-shH+ctQAx4fpTMWTmo3wB45ZS38Jf8RknryPabfZ6QE=";
+    #   };
+    #   patches = [ ];
+    #   mesonCheckFlags = [
+    #     "--no-suite"
+    #     "fprintd:PAM"
+    #     "--no-suite"
+    #     "fprintd:TestPamFprintd"
+    #   ];
+    # });
+  };
   # modifications = final: prev: { 
   #   asusctl = prev.asusctl.overrideAttrs (drv: rec {
   #     pname = "asusctl";

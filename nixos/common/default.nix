@@ -1,16 +1,10 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 
-{ inputs, outputs, lib, config, pkgs, username, ... }:
-{
+{ inputs, outputs, lib, config, pkgs, username, ... }: {
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-    ];
-    config = {
-      allowUnfree = true;
-    };
+    overlays = [ outputs.overlays.additions outputs.overlays.modifications ];
+    config = { allowUnfree = true; };
   };
 
   imports = [
@@ -19,7 +13,8 @@
     ./boot.nix
     ./fonts.nix
     # ./gnome.nix
-    ./hyprland.nix
+    # ./hyprland.nix
+    ./desktopEnvironment.nix
     ./libvirt.nix
     ./networking.nix
     ./virtualisation.nix
@@ -30,21 +25,26 @@
     # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
-    # This will additionally add your inputs to the system's legacy channels
+    # ThisgnomeExtensions. will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
+      config.nix.registry;
 
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
-      sandbox = true; # TODO: remove after test
+      # sandbox = true; # TODO: remove after test
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org/"
+        "https://attic.kennel.juneis.dog/conduwuit"
+        # "https://cosmic.cachix.org/"
       ];
       trusted-users = [ "root" "${username}" ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "conduwuit:BbycGUgTISsltcmH0qNjFR9dbrQNYgdIAcmViSGoVTE="
+        # "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       ];
     };
     gc = {
@@ -61,19 +61,18 @@
   # Services 
   # services.printing.enable = true;
   services.tailscale.enable = true;
-  services.fwupd = {
-    enable = true;
-  };
+  services.fwupd = { enable = true; };
 
   # default editor
   environment.variables = {
     EDITOR = "nvim";
-    MOZ_ENABLE_WAYLAND = "1";
-    HYPRCURSOR_SIZE = "20";
-    HYPRCURSOR_THEME = "Bibata-Modern-Classic";
+    # MOZ_ENABLE_WAYLAND = "1";
+    # HYPRCURSOR_SIZE = "20";
+    # HYPRCURSOR_THEME = "Bibata-Modern-Classic";
   };
 
   environment.systemPackages = with pkgs; [
+    caido43
     gcc
     cmake
     gnumake

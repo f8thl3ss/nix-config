@@ -1,4 +1,10 @@
 return require("lazy").setup({
+  performance = {
+    -- we install some packages via nix so we want to load from packpath too
+    reset_packpath = false,
+    -- rtp = { reset = false, } can be used too
+  },
+
   'vim-test/vim-test',
   { 'numToStr/Comment.nvim', lazy = false },
   'NoahTheDuke/vim-just',
@@ -9,7 +15,7 @@ return require("lazy").setup({
   'zivyangll/git-blame.vim',
 
   -- Tree sitter
-  'nvim-treesitter/nvim-treesitter',
+  -- 'nvim-treesitter/nvim-treesitter',
   'mrcjkb/rustaceanvim',
 
   -- Completion
@@ -51,6 +57,40 @@ return require("lazy").setup({
 
   -- Diagnostic
   "folke/trouble.nvim",
+  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  cmd = "Trouble",
+  keys = {
+    {
+      "<leader>xx",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Diagnostics (Trouble)",
+    },
+    {
+      "<leader>xX",
+      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+      desc = "Buffer Diagnostics (Trouble)",
+    },
+    {
+      "<leader>cs",
+      "<cmd>Trouble symbols toggle focus=false<cr>",
+      desc = "Symbols (Trouble)",
+    },
+    {
+      "<leader>cl",
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      desc = "LSP Definitions / references / ... (Trouble)",
+    },
+    {
+      "<leader>xL",
+      "<cmd>Trouble loclist toggle<cr>",
+      desc = "Location List (Trouble)",
+    },
+    {
+      "<leader>xQ",
+      "<cmd>Trouble qflist toggle<cr>",
+      desc = "Quickfix List (Trouble)",
+    },
+  },
 
   -- Theme
   { "catppuccin/nvim",       as = "catppuccin" },
@@ -67,7 +107,6 @@ return require("lazy").setup({
   'MunifTanjim/prettier.nvim',
 
   -- Debug
-  { "nvim-neotest/nvim-nio" },
   'mfussenegger/nvim-dap',
   "nvim-neotest/nvim-nio",
   { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
@@ -92,19 +131,19 @@ return require("lazy").setup({
 
   -- Ai
   "zbirenbaum/copilot.lua",
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-    },
-    opts = {
-      debug = true, -- Enable debugging
-      -- See Configuration section for rest
-    },
-    -- See Commands section for default commands if you want to lazy load on them
-  },
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   branch = "canary",
+  --   dependencies = {
+  --     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+  --     { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+  --   },
+  --   opts = {
+  --     debug = true, -- Enable debugging
+  --     -- See Configuration section for rest
+  --   },
+  --   -- See Commands section for default commands if you want to lazy load on them
+  -- },
   -- {
   --   "jcdickinson/codeium.nvim",
   --   dependencies = {
@@ -132,4 +171,24 @@ return require("lazy").setup({
     "akinsho/toggleterm.nvim",
     version = '*',
   },
+
+  -- Avante
+  {
+    -- support for image pasting
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- recommended settings
+      default = {
+        embed_image_as_base64 = false,
+        prompt_for_file_name = false,
+        drag_and_drop = {
+          insert_mode = true,
+        },
+        -- required for Windows users
+        use_absolute_path = true,
+      },
+    },
+  },
+  'MeanderingProgrammer/render-markdown.nvim',
 })
