@@ -68,6 +68,7 @@
         };
       };
       gitblame.enable = true;
+      diffview.enable = true;
       crates-nvim.enable = true;
 
       # Rust
